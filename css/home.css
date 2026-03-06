@@ -1,0 +1,163 @@
+@media (max-width: 768px) {
+
+    /* Ajustes para encabezado y navbar */
+    header h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        padding: 15px 0;
+        gap: 15px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .menu a {
+        padding: 10px;
+    }
+
+    .menu img {
+        width: 15vw;
+        min-width: 60px;
+    }
+
+    .navbar input {
+        width: 80%;
+        margin-right: 0;
+    }
+
+    /* Principal (Banner) */
+    .principal {
+        flex-direction: column;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+
+    .principal img {
+        width: 70vw;
+        margin-bottom: 20px;
+    }
+
+    .banner {
+        padding: 1rem 0;
+    }
+
+    .banner h2 {
+        font-size: 24px;
+        padding: 1rem 0;
+    }
+
+    .banner p {
+        flex-direction: column;
+    }
+
+    /* Misterios */
+    .Los7misterios {
+        padding: 30px 10px;
+    }
+
+    /* Has escuchado (Cartas) */
+    .cartas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .muerte-misterio {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    /* Desaparecido (Secciones) */
+    .secciones {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .seccion {
+        width: 90%;
+        max-width: 300px;
+        margin-bottom: 15px;
+    }
+
+    /* Final pagina */
+    .Final-pagina {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .Final-pagina-info {
+        padding-right: 0;
+    }
+
+    .card {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .card-img img {
+        width: 100%;
+    }
+
+
+    .Footer {
+        padding: 40px 20px;
+    }
+
+    .letra {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .letra-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .letra-form input {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .footer-boton {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-link {
+        flex-direction: column;
+        gap: 40px;
+        padding-right: 0;
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .banner h2 {
+        font-size: 20px;
+    }
+
+    .boton button {
+        padding: 15px 20px;
+        font-size: 1.2rem;
+        width: 100%;
+    }
+
+    .Final-pagina-info h2 {
+        font-size: 32px;
+    }
+
+    .letra-text p {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,468 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+header {
+    background-color: rgb(30, 6, 6);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+
+}
+
+header h1 {
+    font-size: 30px;
+    color: rgb(212, 152, 61);
+    text-shadow: 1px 1px 10px;
+}
+
+.navbar {
+    background-color: rgb(90, 0, 0);
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu a {
+    color: rgb(255, 255, 255);
+    padding: 2vw;
+}
+
+.menu img {
+    width: 9vw;
+}
+
+.navbar input {
+    width: 15vw;
+    margin-right: 50px;
+    border-radius: 7px;
+    justify-content: center;
+}
+
+.principal {
+    background: rgb(129, 24, 2);
+    padding: 1rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.banner {
+
+    padding: 2rem;
+    color: rgb(222, 192, 166);
+    font-size: large;
+
+}
+
+.banner h2 {
+    font-family: 'Roboto', sans-serif;
+    padding: 2rem;
+    color: rgb(222, 192, 166);
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.principal img {
+    width: 30vw;
+
+
+}
+
+.banner p {
+
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    display: flex;
+    color: rgb(222, 192, 166);
+    justify-content: center;
+    text-align: center;
+
+}
+
+.boton {
+    display: flex;
+    justify-content: center;
+}
+
+.boton button {
+    background-color: rgb(222, 192, 166);
+    color: rgb(129, 24, 2);
+    border: none;
+    padding: 20px 30px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.boton button:hover {
+    background-color: darkred;
+    transform: scale(1.1);
+}
+
+.Los7misterios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: rgb(30, 6, 6)
+}
+
+.Los7misterios h1 {
+    margin-bottom: 24px;
+    color: rgb(222, 192, 166);
+    font-family: 'Roboto', sans-serif
+}
+
+.los-7-misterios {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.misterio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 130px;
+}
+
+.misterio img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.misterio p {
+    text-align: center;
+    font-size: 13px;
+    margin: 0;
+    color: rgb(222, 192, 166);
+    font-family: 'Roboto', sans-serif
+}
+
+/* JUST IN */
+.Has-escuchado {
+    padding: 60px 40px;
+    text-align: center;
+    background: linear-gradient(rgb(129, 24, 2), rgb(30, 6, 6));
+}
+
+.Has-escuchado h2 {
+    font-size: 2rem;
+    margin-bottom: 6px;
+    color: rgba(21, 16, 12);
+    font-family: 'Roboto', sans-serif
+}
+
+.Has-escuchado>p {
+    color: rgba(21, 16, 12);
+    margin-bottom: 36px;
+    font-family: 'Roboto', sans-serif
+}
+
+.cartas {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+
+}
+
+.muerte-misterio {
+    width: 280px;
+    border: 10px solid rgba(21, 16, 12);
+    ;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+    background: rgba(21, 16, 12);
+    color: rgb(129, 24, 2);
+    font-family: 'Roboto', sans-serif
+}
+
+.muerte-misterio img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.muerte-misterio h3,
+.muerte-misterio p,
+.muerte-misterio button {
+    margin: 10px 16px;
+    display: block;
+    font-family: 'Roboto', sans-serif
+}
+
+.muerte-misterio p {
+    color: rgba(21, 16, 12)
+}
+
+.muerte-misterio button {
+    margin-bottom: 16px;
+    padding: 8px 18px;
+    background: rgba(21, 16, 12);
+    color: rgb(129, 24, 2);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.muerte-misterio button:hover {
+
+    transform: scale(1.1);
+}
+
+.muerte-misterio:hover p {
+    color: rgb(129, 24, 2);
+    ;
+}
+
+.desaparecido {
+    padding: 60px 40px;
+    text-align: center;
+    background: rgb(30, 6, 6);
+}
+
+.desaparecido h2 {
+
+    font-size: 2rem;
+    margin-bottom: 6px;
+    color:
+        rgba(168, 58, 52);
+    font-family: 'Roboto', sans-serif
+}
+
+.desaparecido>p {
+    color:
+        rgba(168, 58, 52);
+    margin-bottom: 36px;
+    font-family: 'Roboto', sans-serif
+}
+
+.secciones {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.seccion {
+    width: 240px;
+    padding: 28px 20px;
+    background: rgb(30, 6, 6);
+    border: 1px solid rgb(30, 6, 6);
+    border-radius: 10px;
+}
+
+.seccion span {
+    width: 60px;
+    height: 60px;
+    background: rgba(168, 58, 52);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 12px;
+}
+
+.seccion h3 {
+    margin: 12px 0 8px;
+    color: rgba(168, 58, 52);
+    font-family: 'Roboto', sans-serif;
+}
+
+.seccion p {
+    color: rgba(168, 58, 52);
+    font-size: 0.85rem;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.busquedad {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    padding: 30px 40px;
+    background-color: rgba(237, 140, 124);
+    color: rgba(168, 58, 52);
+}
+
+
+.Final-pagina {
+    background: linear-gradient(rgb(30, 6, 6), rgb(129, 24, 2));
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 10%;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Final-pagina-info {
+    flex: 1;
+    padding-right: 60px;
+}
+
+.Final-pagina-info h2 {
+    font-size: 42px;
+    font-weight: 400;
+    color: rgb(222, 192, 166);
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Final-pagina-info p {
+    font-size: 16px;
+    color: rgb(222, 192, 166);
+    line-height: 1.6;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Final-pagina-cards {
+    flex: 1;
+    display: flex;
+    gap: 30px;
+    justify-content: flex-end;
+}
+
+.card {
+    background-color: rgb(129, 24, 2);
+    width: 20vw;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    border-radius: 5%;
+}
+
+.card-img img {
+    width: 20vw;
+    object-fit: cover;
+}
+
+
+
+.card p {
+    font-size: 13px;
+    color: rgb(222, 192, 166);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Footer {
+    background-color: rgb(30, 6, 6);
+    color: rgb(222, 192, 166);
+    padding: 60px 10%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.letra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.letra-text p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(222, 192, 166);
+}
+
+.letra-form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.letra-form input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    color: rgb(222, 192, 166);
+    font-size: 14px;
+    padding: 5px 0;
+    outline: none;
+    width: 250px;
+}
+
+.letra-form input::placeholder {
+    color: rgb(222, 192, 166);
+}
+
+.letra-form button {
+    background-color: transparent;
+    border: 1px solid rgb(222, 192, 166);
+    color: rgb(222, 192, 166);
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.letra-form button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer-boton {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+.footer-link {
+    display: flex;
+    gap: 120px;
+    padding-right: 50px;
+}
+
+.link-columnas h4 {
+    font-size: 14px;
+    margin-bottom: 18px;
+    color: rgb(222, 192, 166);
+}
+
+.link-columnas ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-columnas ul li {
+    margin-bottom: 10px;
+}
+
+.link-columnas ul li a {
+    color: rgb(222, 192, 166);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+}
+
+.link-columnas ul li a:hover {
+    color: rgb(222, 192, 166);
+}
