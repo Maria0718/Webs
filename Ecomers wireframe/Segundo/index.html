@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Fashion Wireframe - Vue & Bootstrap</title>
+
+    <!-- Bootstrap 5.3.2 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome 6.4.2 (Icons) CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Custom CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- ---------- NAVBAR SYSTEM ---------- -->
+        <nav class="navbar navbar-expand-lg navbar-premium sticky-top shadow-sm py-3">
+            <div class="container">
+                <!-- Brand / Logo -->
+                <a class="navbar-brand navbar-brand-premium d-flex align-items-center gap-2" href="#">
+                    FASHION
+                </a>
+
+                <!-- Responsive Toggler Button -->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars fs-4 text-dark"></i>
+                </button>
+
+                <!-- Navigation Links & Interactive Controls -->
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-premium active" href="#">NEW</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-premium" href="#collection">WOMEN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-premium" href="#collection">MEN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-premium" href="#collection">COLLECTION</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-premium" href="#trends">TRENDS</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3 flex-wrap mt-3 mt-lg-0">
+
+
+                        <!-- Login Outline Button -->
+                        <button class="btn-login-outline" @click="showLoginModal = true">
+                            LOGIN
+                        </button>
+
+                        <!-- Shopping Cart Badge Icon -->
+                        <button class="btn btn-dark rounded-pill px-4 py-2 d-flex align-items-center gap-2 position-relative btn-pill-dark"
+                            @click="showCartDrawer = true">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span v-if="cartCount > 0"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white">
+                                {{ cartCount }}
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- ---------- HERO SECTION ---------- -->
+        <section class="hero py-5">
+            <div class="container py-4 py-lg-5">
+                <div class="row align-items-center g-5">
+                    <!-- Left: Typography Hero Column -->
+                    <div class="col-lg-6 order-2 order-lg-1">
+                        <h1 class="hero-title">Find The Best Fashion Style For You</h1>
+                        <p class="lead text-muted-custom mb-5">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        </p>
+                        <a href="#our-products" class="btn-pill-dark btn-lg">SHOP NOW</a>
+                    </div>
+                    <!-- Right: Vector Image Placeholder with Custom Bottom-Left Corner -->
+                    <div class="col-lg-6 order-1 order-lg-2">
+                        <div class="wireframe-placeholder hero-image-placeholder rounded shadow-sm">
+                            <i class="fa-solid fa-image placeholder-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------- NEW COLLECTION SECTION ---------- -->
+        <section id="collection" class="py-5 bg-light-section bg-opacity-10 py-lg-5">
+            <div class="container py-3">
+                <!-- Title Block -->
+                <div class="text-center mb-5 max-width-600 mx-auto">
+                    <h2 class="section-title">New Collection</h2>
+                    <p class="text-muted-custom">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. After leaves us filter.
+                    </p>
+                </div>
+
+                <!-- 3 Category Column Cards -->
+                <div class="row g-4 justify-content-center">
+                    <!-- Column 1: Sweater -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="category-card shadow-sm">
+                            <div class="wireframe-placeholder category-image card-sweater-placeholder">
+                                <i class="fa-solid fa-shirt placeholder-icon"></i>
+                            </div>
+                            <div class="category-label">Sweater</div>
+                        </div>
+                    </div>
+                    <!-- Column 2: Pants / Jeans -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="category-card shadow-sm">
+                            <div class="wireframe-placeholder category-image card-jeans-placeholder">
+                                <i class="fa-solid fa-socks placeholder-icon"></i>
+                            </div>
+                            <div class="category-label">Jeans</div>
+                        </div>
+                    </div>
+                    <!-- Column 3: Jackets -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="category-card shadow-sm">
+                            <div class="wireframe-placeholder category-image card-jackets-placeholder">
+                                <i class="fa-solid fa-vest placeholder-icon"></i>
+                            </div>
+                            <div class="category-label">Jackets</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------- BEST FASHION SINCE 2014 SECTION ---------- -->
+        <section class="py-5">
+            <div class="container py-4 py-lg-5">
+                <div class="row align-items-center g-5">
+                    <!-- Left: Asymmetrical Image Placeholder & Floating Statistics Banner -->
+                    <div class="col-lg-6 since2014-container">
+                        <div class="wireframe-placeholder since2014-image-placeholder rounded shadow-sm">
+                            <i class="fa-solid fa-image placeholder-icon"></i>
+                        </div>
+
+                        <!-- Statistics Overlay Banner -->
+                        <div class="stats-overlay-banner">
+                            <div class="stat-item">
+                                <div class="stat-number">2014</div>
+                                <div class="stat-label">Fundado</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">8900+</div>
+                                <div class="stat-label">Clientes</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">3105+</div>
+                                <div class="stat-label">Productos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Narrative Details Column -->
+                    <div class="col-lg-6 ps-lg-5">
+                        <h2 class="section-title mb-4">Best Fashion Since 2014</h2>
+                        <p class="lead text-muted-custom mb-4">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------- BEST SELLER PRODUCT SECTION ---------- -->
+        <section id="trends" class="py-5 bg-secondary bg-opacity-10">
+            <div class="container py-4 py-lg-5">
+                <div class="row mb-5 align-items-end g-4">
+                    <!-- Left Title Block -->
+                    <div class="col-md-8">
+                        <h2 class="section-title">Best Seller Product</h2>
+                        <p class="text-muted-custom mb-0">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard text ever since the 1500s.
+                        </p>
+                    </div>
+                    <!-- Right "See More" Button -->
+                    <div class="col-md-4 text-md-end">
+                        <a href="#our-products" class="btn-pill-outline">SEE MORE</a>
+                    </div>
+                </div>
+
+                <!-- Product Slider Outer Track Wrapper -->
+                <div class="slider-outer-wrapper">
+                    <div class="slider-inner-track" :style="{ transform: 'translateX(-' + (bestSellersPage * (isMobile ? 100 : 50)) + '%)' }">
+                        <!-- Product Card Loop -->
+                        <div v-for="product in bestSellers" :key="product.id" class="slider-item-card">
+                            <div class="product-premium-card shadow-sm">
+                                <div class="wireframe-placeholder product-image-box" :class="product.imageClass">
+                                    <i :class="product.icon" class="placeholder-icon"></i>
+                                </div>
+                                <div class="product-details-box">
+                                    <div class="star-rating">
+                                        <i class="fa-solid fa-star" v-for="star in product.rating" :key="star"></i>
+                                    </div>
+                                    <h4 class="product-title-custom">{{ product.name }}</h4>
+                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                        <span class="product-price-custom">${{ product.price }}</span>
+                                        <button class="btn btn-dark rounded-pill px-3 py-1.5 btn-pill-dark"
+                                            @click="addToCart(product)">
+                                            <i class="fa-solid fa-plus me-1"></i> Añadir
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Page Navigation Dots -->
+                <div class="dot-navigation-container">
+                    <button v-for="i in 4" :key="i"
+                        :class="{ active: bestSellersPage === i - 1 }"
+                        @click="changeBestSellersPage(i - 1)"
+                        class="nav-dot"
+                        :title="'Slide ' + i">
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------- OUR PRODUCT GRID FILTER SECTION ---------- -->
+        <section id="our-products" class="py-5">
+            <div class="container py-4 py-lg-5">
+                <!-- Title Block -->
+                <div class="text-center mb-5 mx-auto">
+                    <h2 class="section-title">Our Product</h2>
+                </div>
+
+                <!-- Custom Grid Filter Navigation Menu -->
+                <div class="custom-product-nav">
+                    <button @click="activeProductTab = 'hot'" :class="{ active: activeProductTab === 'hot' }" class="custom-nav-btn">
+                        HOT
+                    </button>
+                    <button @click="activeProductTab = 'sale'" :class="{ active: activeProductTab === 'sale' }" class="custom-nav-btn">
+                        ON SALE
+                    </button>
+                    <button @click="activeProductTab = 'trending'" :class="{ active: activeProductTab === 'trending' }" class="custom-nav-btn">
+                        TRENDING NOW
+                    </button>
+                    <button @click="activeProductTab = 'new'" :class="{ active: activeProductTab === 'new' }" class="custom-nav-btn">
+                        NEW ARRIVAL
+                    </button>
+                </div>
+
+                <!-- Responsive Grid Products Container -->
+                <div class="row g-4">
+                    <div class="col-sm-6 col-md-4 col-lg-3" v-for="product in filteredProducts" :key="product.id">
+                        <div class="product-premium-card shadow-sm h-100">
+                            <!-- Image Box with Fashion icons -->
+                            <div class="wireframe-placeholder product-image-box product-image-box-sm" :class="product.imageClass">
+                                <i :class="product.icon" class="placeholder-icon"></i>
+                            </div>
+                            <!-- Details Card Overlay -->
+                            <div class="product-details-box">
+                                <h4 class="product-title-custom" style="font-size: 1.05rem;">{{ product.name }}</h4>
+                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <span class="product-price-custom">${{ product.price }}</span>
+                                    <button class="btn btn-dark rounded-pill px-3 py-1 btn-pill-dark"
+                                        @click="addToCart(product)">
+                                        <i class="fa-solid fa-plus me-1"></i> Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------- FOOTER SECTION ---------- -->
+        <footer class="footer-premium py-5 mt-5">
+            <div class="container py-4">
+                <div class="row g-5">
+                    <!-- Column 1: Info Brand -->
+                    <div class="col-lg-4">
+                        <h4 class="brand-font mb-4">FASHION</h4>
+                        <p class="text-secondary small leading-relaxed">
+                            Tu destino número uno para explorar diseños premium de alta costura, combinando una estética editorial refinada con herramientas de desarrollo de última tecnología.
+                        </p>
+                    </div>
+                    <!-- Column 2: Navigation Links -->
+                    <div class="col-lg-2 offset-lg-2">
+                        <h5 class="mb-4">Enlaces</h5>
+                        <ul class="list-unstyled d-flex flex-column gap-2">
+                            <li><a href="#" class="footer-link">Inicio</a></li>
+                            <li><a href="#collection" class="footer-link">Colecciones</a></li>
+                            <li><a href="#trends" class="footer-link">Tendencias</a></li>
+                            <li><a href="#our-products" class="footer-link">Nuestros Productos</a></li>
+                        </ul>
+                    </div>
+                    <!-- Column 3: Newsletter Sign-up -->
+                    <div class="col-lg-4">
+                        <h5 class="mb-4">Suscríbete</h5>
+                        <p class="text-secondary small mb-3">Recibe ofertas exclusivas y notificaciones del prototipo.</p>
+                        <form @submit.prevent="subscribeNewsletter" class="input-group">
+                            <input type="email" required v-model="userEmail" class="form-control newsletter-input" placeholder="Tu correo electrónico" aria-label="Email address">
+                            <button class="btn btn-primary newsletter-btn" type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Bottom bar -->
+                <div class="border-top var(--placeholder-border) mt-5 pt-4 text-center">
+                    <p class="text-secondary small mb-0">&copy; 2026 FASHION Wireframe Inc. Siguiendo el estilo premium de MiTienda.</p>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- ---------- OFF-CANVAS CART DRAWER SYSTEM ---------- -->
+        <!-- Backdrop -->
+        <div class="cart-backdrop" :class="{ open: showCartDrawer }" @click="showCartDrawer = false"></div>
+
+        <!-- Drawer Panel -->
+        <div class="cart-drawer-panel" :class="{ open: showCartDrawer }">
+            <div class="cart-drawer-header">
+                <h4 class="mb-0"><i class="fa-solid fa-cart-shopping me-2"></i>Carrito de Compras</h4>
+                <button type="button" class="btn-close" @click="showCartDrawer = false" aria-label="Close"></button>
+            </div>
+            
+            <div class="cart-drawer-body">
+                <!-- Empty Cart State -->
+                <div v-if="cart.length === 0" class="text-center py-5">
+                    <i class="fa-solid fa-bag-shopping fs-1 text-muted-custom mb-3 opacity-50"></i>
+                    <p class="text-muted-custom">Tu carrito está vacío.</p>
+                    <button class="btn btn-outline-dark rounded-pill px-4 mt-2 btn-pill-outline" @click="showCartDrawer = false">
+                        Seguir Comprando
+                    </button>
+                </div>
+
+                <!-- Cart Items List Loop -->
+                <div v-else>
+                    <div v-for="item in cart" :key="item.id" class="cart-item-row">
+                        <!-- Tiny mock img placeholder -->
+                        <div class="wireframe-placeholder cart-item-img" :class="item.imageClass">
+                            <i :class="item.icon" class="fs-6 opacity-50 text-muted"></i>
+                        </div>
+                        
+                        <div class="flex-grow-1">
+                            <div class="cart-item-title">{{ item.name }}</div>
+                            <div class="cart-item-price">${{ item.price }}</div>
+                        </div>
+
+                        <!-- Quantity control buttons -->
+                        <div class="d-flex align-items-center gap-2">
+                            <button @click="updateQuantity(item.id, -1)" class="btn btn-sm btn-light border p-1" style="width: 25px; height: 25px; line-height: 10px;">-</button>
+                            <span class="small fw-bold">{{ item.quantity }}</span>
+                            <button @click="updateQuantity(item.id, 1)" class="btn btn-sm btn-light border p-1" style="width: 25px; height: 25px; line-height: 10px;">+</button>
+                        </div>
+
+                        <!-- Trash remove button -->
+                        <button class="btn-remove-cart" @click="removeFromCart(item.id)">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drawer Bottom Checkout Summary -->
+            <div v-if="cart.length > 0" class="cart-drawer-footer">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="fw-bold">Total del Carrito:</span>
+                    <span class="fs-5 fw-bold text-dark text-decoration-underline">${{ cartTotal }}</span>
+                </div>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <button class="btn btn-outline-danger w-100 rounded-pill py-2 text-uppercase fw-bold" style="font-size: 0.75rem;" @click="clearCart">
+                            Vaciar
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-dark w-100 rounded-pill py-2 text-uppercase fw-bold btn-pill-dark" style="font-size: 0.75rem;" @click="showCartDrawer = false; alert('¡Proceso de compra simulado con éxito!')">
+                            Pagar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ---------- INTERACTIVE LOGIN MODAL ---------- -->
+        <div class="modal fade show" v-if="showLoginModal" style="display: block; background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg rounded" style="background-color: var(--bg-primary);">
+                    <div class="modal-header border-bottom-0 p-4 pb-0">
+                        <h4 class="modal-title fw-bold" style="font-family: var(--font-display);">Acceso de Usuario</h4>
+                        <button type="button" class="btn-close" @click="showLoginModal = false" aria-label="Close"></button>
+                    </div>
+                    <form @submit.prevent="handleLoginSubmit">
+                        <div class="modal-body p-4">
+                            <p class="text-secondary small mb-4">Ingresa tus credenciales del wireframe para simular el inicio de sesión.</p>
+                            
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label small fw-bold">Correo Electrónico</label>
+                                <input type="email" required v-model="loginForm.email" class="form-control newsletter-input rounded" id="loginEmail" placeholder="nombre@ejemplo.com">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label small fw-bold">Contraseña</label>
+                                <input type="password" required v-model="loginForm.password" class="form-control newsletter-input rounded" id="loginPassword" placeholder="••••••••">
+                            </div>
+                        </div>
+                        <div class="modal-footer border-top-0 p-4 pt-0">
+                            <button type="button" class="btn btn-outline-secondary rounded-pill px-4" @click="showLoginModal = false">Cancelar</button>
+                            <button type="submit" class="btn btn-dark rounded-pill px-4 btn-pill-dark">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ---------- TOAST NOTIFICATIONS POPUPS ---------- -->
+        <div class="toast-premium-container position-fixed bottom-0 end-0 p-3">
+            
+            <!-- Add to Cart Toast -->
+            <div id="cartToast" class="toast align-items-center text-bg-success toast-premium border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body fw-bold">
+                        <i class="fa-solid fa-circle-check me-2"></i> ¡Objeto añadido al carrito!
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <!-- Limit Exceeded Toast -->
+            <div id="limitToast" class="toast align-items-center text-bg-danger toast-premium border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body fw-bold">
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i> Límite de 10 objetos alcanzado en el carrito.
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <!-- Login Success Toast -->
+            <div id="loginToast" class="toast align-items-center text-bg-success toast-premium border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body fw-bold">
+                        <i class="fa-solid fa-circle-check me-2"></i> ¡Sesión iniciada con éxito en el wireframe!
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS (with Popper) CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Custom Vue Application Script -->
+    <script src="Vue.js"></script>
+
+</body>
+
+</html>
