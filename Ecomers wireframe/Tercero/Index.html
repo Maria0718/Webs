@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPlant - E-commerce de Plantas</title>
+ 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+   
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <link rel="stylesheet" href="Stiles.css">
+</head>
+<body>
+    <div id="app" v-cloak>
+        
+        <nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="./Assets/image.png" alt="EcoPlant Logo" class="logo-img me-2">
+                    <span class="fw-bold text-white fs-4">EcoPlant</span>
+                </a>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#productos">Colección</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#cuidados">Guía de Cuidados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#newsletter">Contacto</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center gap-3">
+                        <!-- Search Bar inside Navbar -->
+                        <div class="input-group input-group-sm d-none d-md-flex search-bar-nav">
+                            <input type="text" class="form-control bg-dark border-secondary text-white" placeholder="Buscar plantas..." v-model="searchQuery">
+                            <span class="input-group-text bg-secondary border-secondary text-white">🔍</span>
+                        </div>
+                        <button class="btn btn-outline-light position-relative px-3" @click="toggleCart">
+                            🛒 <span class="d-none d-sm-inline">Carrito</span>
+                            <span v-if="cartTotalItems > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{ cartTotalItems }}
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        
+        <div class="cart-overlay" v-if="isCartOpen" @click="toggleCart"></div>
+        <div class="cart-sidebar" :class="{'open': isCartOpen}">
+            <div class="d-flex justify-content-between align-items-center p-3 border-bottom border-secondary">
+                <h5 class="m-0 text-white fw-bold">Tu Carrito de Compra</h5>
+                <button class="btn-close btn-close-white" @click="toggleCart"></button>
+            </div>
+            <div class="p-3 flex-grow-1 overflow-y-auto">
+                <div v-if="cart.length === 0" class="text-muted text-center mt-5">
+                    <span class="fs-1 d-block mb-3">🪴</span>
+                    El carrito está vacío. ¡Elige algunas plantas para llenarlo!
+                </div>
+                <div v-else>
+                    <div v-for="(item, index) in cart" :key="item.id" class="d-flex justify-content-between align-items-center mb-3 cart-item p-2 border-bottom border-secondary">
+                        <div class="pe-2">
+                            <h6 class="text-light m-0 fw-semibold">{{ item.name }}</h6>
+                            <small class="text-muted">${{ item.price.toFixed(2) }} x {{ item.quantity }}</small>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="text-success fw-bold">${{ (item.price * item.quantity).toFixed(2) }}</span>
+                            <button class="btn btn-sm btn-outline-danger border-0" @click="removeFromCart(index)">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 border-top border-secondary bg-dark-green" v-if="cart.length > 0">
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="text-white fs-5 fw-bold">Total:</span>
+                    <span class="text-success fs-5 fw-bold">${{ cartTotal }}</span>
+                </div>
+                <button class="btn btn-success w-100 btn-checkout py-2" @click="clearCart">Proceder al Pago</button>
+            </div>
+        </div>
+
+        
+        <header class="hero-section text-center text-white d-flex align-items-center justify-content-center">
+            <div class="container py-5">
+                <h1 class="display-3 fw-bold mb-3 font-serif">Dale Vida a tu Espacio</h1>
+                <p class="lead mb-4 mx-auto text-light-green" style="max-width: 600px;">
+                    Descubre nuestra colección exclusiva de plantas de interior y exterior meticulosamente cultivadas para llenar tu hogar de energía positiva y frescura natural.
+                </p>
+                <a href="#productos" class="btn btn-lg custom-btn">Explorar Colección</a>
+            </div>
+        </header>
+
+        
+        <main class="container my-5" id="productos">
+            
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 gap-3">
+                <h2 class="text-white m-0 font-serif fw-bold">Nuestras Favoritas</h2>
+                
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <button class="btn btn-sm px-3 rounded-pill btn-category" :class="{'active': selectedCategory === 'all'}" @click="setCategory('all')">Todas</button>
+                    <button class="btn btn-sm px-3 rounded-pill btn-category" :class="{'active': selectedCategory === 'interior'}" @click="setCategory('interior')">Interior</button>
+                    <button class="btn btn-sm px-3 rounded-pill btn-category" :class="{'active': selectedCategory === 'exterior'}" @click="setCategory('exterior')">Exterior</button>
+                    <button class="btn btn-sm px-3 rounded-pill btn-category" :class="{'active': selectedCategory === 'easy'}" @click="setCategory('easy')">Fácil Cuidado</button>
+                </div>
+            </div>
+
+            
+            <div class="row g-4">
+                <div class="col-12 text-center text-muted my-5" v-if="filteredProducts.length === 0">
+                    <span class="fs-1 d-block">🏜️</span>
+                    No se encontraron plantas que coincidan con tu búsqueda.
+                </div>
+                
+                <div class="col-sm-6 col-md-4" v-for="product in filteredProducts" :key="product.id">
+                    <div class="card h-100 custom-card">
+                        <div class="card-img-placeholder d-flex flex-column align-items-center justify-content-center text-center p-4" @click="openQuickView(product)">
+                            <div class="plant-avatar">🌱</div>
+                            <span class="quick-view-badge">Vista Rápida</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title text-white m-0 fw-bold">{{ product.name }}</h5>
+                                <span class="badge bg-secondary-green text-capitalize">{{ product.category }}</span>
+                            </div>
+                            <p class="card-text text-muted flex-grow-1 fs-7">{{ product.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-success-green fs-5 fw-bold">${{ product.price.toFixed(2) }}</span>
+                                <button class="btn btn-sm custom-btn-outline" @click="addToCart(product)">
+                                    + Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <section id="cuidados" class="my-5 py-5 border-top border-secondary">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="care-icon-box text-center p-5 rounded-4">
+                            <span class="display-1">💧</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-white ps-lg-5">
+                        <h2 class="font-serif fw-bold mb-4">Aprende a Cuidar tus Plantas</h2>
+                        <p class="text-muted">
+                            Cada planta tiene su propia personalidad y necesidades únicas de riego, iluminación y fertilización. Nuestra misión no solo es entregarte plantas hermosas, sino guiarte para que prosperen contigo a largo plazo.
+                        </p>
+                        <div class="d-flex flex-column gap-3 mt-4">
+                            <div class="d-flex gap-3 align-items-start">
+                                <span class="fs-4 text-success">☀️</span>
+                                <div>
+                                    <h6 class="m-0 fw-bold">Luz Indirecta</h6>
+                                    <p class="text-muted small m-0">La mayoría de las plantas de interior prefieren luz tamizada o indirecta para evitar quemar sus hojas.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3 align-items-start">
+                                <span class="fs-4 text-success">💧</span>
+                                <div>
+                                    <h6 class="m-0 fw-bold">Riego Moderado</h6>
+                                    <p class="text-muted small m-0">El exceso de agua es el enemigo #1. Siempre verifica que los primeros centímetros de tierra estén secos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        
+        <section id="newsletter" class="py-5 bg-dark-green text-center text-white border-top border-secondary">
+            <div class="container py-4" style="max-width: 600px;">
+                <h3 class="font-serif fw-bold mb-3">Únete a Nuestra Comunidad Verde</h3>
+                <p class="mb-4 color-white">Recibe consejos exclusivos de cuidado de plantas, lanzamientos de colecciones y un 10% de descuento en tu primera compra.</p>
+                <form @submit.prevent="subscribeNewsletter" class="input-group">
+                    <input type="email" class="form-control bg-dark border-secondary text-white py-2" placeholder="Tu correo electrónico" required v-model="newsletterEmail">
+                    <button class="btn btn-success custom-btn py-2 px-4" type="submit">Suscribirme</button>
+                </form>
+                <div v-if="newsletterSuccess" class="alert alert-success mt-3 py-2 bg-transparent text-success border-success text-center">
+                    🌱 ¡Suscrito con éxito! Revisa tu correo para tu código de descuento.
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick View Modal (Simulated in Vue) -->
+        <div class="cart-overlay" v-if="quickViewProduct" @click="closeQuickView"></div>
+        <div class="quick-view-modal text-white p-4 rounded-4" v-if="quickViewProduct">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <h3 class="m-0 font-serif fw-bold text-white">{{ quickViewProduct.name }}</h3>
+                <button class="btn-close btn-close-white" @click="closeQuickView"></button>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-5 mb-3 mb-md-0">
+                    <div class="modal-img-placeholder d-flex align-items-center justify-content-center rounded-3 fs-1 p-5">
+                        🪴
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <span class="badge bg-secondary-green text-capitalize mb-2">{{ quickViewProduct.category }}</span>
+                    <p class="text-muted mb-4">{{ quickViewProduct.description }}</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="text-success-green fs-3 fw-bold">${{ quickViewProduct.price.toFixed(2) }}</span>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-success custom-btn px-4" @click="addToCart(quickViewProduct); closeQuickView()">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="custom-footer text-white py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0 text-center text-md-start">
+                        <div class="d-flex align-items-center justify-content-center justify-content-md-start mb-3">
+                            <img src="./Assets/image.png" alt="Logo" class="logo-img me-2">
+                            <span class="fw-bold text-white fs-5">EcoPlant</span>
+                        </div>
+                        <p class="text-muted small pe-md-4">
+                            Tu tienda de plantas de confianza. Cultivamos vida y naturaleza para embellecer y purificar tu hogar.
+                        </p>
+                    </div>
+                    <div class="col-md-4 mb-4 mb-md-0 text-center">
+                        <h5 class="mb-3 text-white fw-bold">Enlaces Rápidos</h5>
+                        <ul class="list-unstyled d-flex flex-column gap-2">
+                            <li><a href="#" class="text-muted text-decoration-none footer-link">Sobre Nosotros</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none footer-link">Preguntas Frecuentes</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none footer-link">Términos y Condiciones</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none footer-link">Política de Privacidad</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <h5 class="mb-3 text-white fw-bold">Síguenos</h5>
+                        <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                            <a href="#" class="text-muted footer-icon fs-4 text-decoration-none">Instagram</a>
+                            <a href="#" class="text-muted footer-icon fs-4 text-decoration-none">Twitter</a>
+                            <a href="#" class="text-muted footer-icon fs-4 text-decoration-none">Facebook</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="border-secondary my-4">
+                <div class="text-center text-muted small">
+                    &copy; 2026 EcoPlant. Todos los derechos reservados.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+    <script src="viu.js"></script>
+</body>
+</html>
